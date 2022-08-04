@@ -1,0 +1,25 @@
+<div align="right">
+  Select provider:
+  <select class="custom-select" id="provider" (change)="filterCatalogsBasedOnProvider($event.target)">
+    <option value="all" selected>all</option>
+    <option *ngFor="let provider of providers" [value]="provider">{{provider}}</option>
+  </select>
+</div>
+<div>
+  <p>Catalogs Page!
+  </p>
+  <p>Total available catalogs: <b>{{catalogs.length}}</b> </p>
+</div>
+<div class="card" *ngFor="let catalog of catalogs">
+  <div class="card-header">
+    {{catalog.name}}
+  </div>
+  <div class="card-body">
+    <!-- <h5 class="card-title">Special title treatment</h5> -->
+    <p class="card-text">{{catalog.description}}</p>
+    <div align="end">
+      <hr />
+      <button type="button" (click)="provision(catalog)" class="btn btn-primary">Provision</button>
+    </div>
+  </div>
+</div>

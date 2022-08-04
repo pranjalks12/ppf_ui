@@ -1,0 +1,85 @@
+<div class="card">
+    <h4 class="card-header">{{catalog.name}} <div class="flt-rgt">
+            <a routerLink=""><img src="assets/img/close-24px.svg" title="close" /></a>
+        </div>
+    </h4>
+    <div class="card-body">
+        <h6 class="card-title">{{catalog.description}}</h6>
+        <div style="margin-top: 20px;">
+            <form [formGroup]="deploymentForm">
+                <div class="form-group">
+                    <label for="account">Accounts</label>
+                    <div class="input-group mb-3">
+                        <select class="form-control custom-select" formControlName="account" id="account">
+                            <option *ngFor="let account of accounts" [value]="account.key">{{account.value}}
+                            </option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="account">Options</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name of deployment</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="deploymentForm.get('name')!.errors ? 'is-invalid':''" formControlName="name"
+                        id="name" aria-describedby="name" placeholder="Enter deployment name">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+                <div class="form-group">
+                    <label for="lifespan">Lifespan</label>
+                    <div class="input-group mb-3">
+                        <select class="form-control custom-select" formControlName="lifespan" id="lifespan">
+                            <option *ngFor="let lifespan of lifespans" [value]="lifespan.key">{{lifespan.value}}
+                            </option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="lifespan">Options</label>
+                        </div>
+                    </div>
+                </div>
+                <form [formGroup]="fieldsForm">
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control custom-select" formControlName="region" id="region">
+                                <option *ngFor="let region of regions" [value]="region.key">{{region.value}}
+                                </option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="region">Options</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Size</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control custom-select" formControlName="size" id="size">
+                                <option *ngFor="let size of sizes" [value]="size.key">{{size.value}}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <label class="input-group-text" for="size">Options</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <label for="requester">Requester</label>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" formControlName="requester" id="requester"
+                            aria-describedby="requester" placeholder="Requester"
+                            [ngClass]="deploymentForm.get('requester')!.errors ? 'is-invalid':''">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="email-addon">@example.com</span>
+                        </div>
+                        <div class="invalid-feedback">Invalid</div>
+                    </div>
+
+                </div>
+                <div align="end" class="form-group">
+                    <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

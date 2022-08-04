@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body{
+    margin: 0;
+    font-family: Gordita,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;;
+}
+.flt-lft {
+    float: left;
+}
+
+.flt-rgt {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.layout-two-column-first-column, .layout-two-column-second-column {
+    width: 50%;
+}
+
+div.content {
+    padding: 0px 25px;
+}
+
+mat-card-title.mat-card-title {
+    margin-bottom: 20px;
+}
+
+div mat-card.mat-card:hover {
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+}

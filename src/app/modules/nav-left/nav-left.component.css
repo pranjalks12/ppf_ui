@@ -1,0 +1,26 @@
+div.nav-left div {
+    border: 1px black solid;
+}
+
+a {
+    text-decoration: none;
+}
+
+mat-list-item{
+    cursor: pointer;
+}
+
+mat-list-item {
+    border-bottom: 0.5px #673ab7 solid;
+}
+
+mat-sidenav div.mat-drawer-inner-container{
+    min-width: 150px;
+}
+
+.mat-drawer{
+    width: 20vh !important;
+}
+.mat-toolbar.mat-primary{
+    background-color: #0d6efd !important;
+}

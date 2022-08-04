@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+    /* background-color: #303030;
+    color: #fff; */
+  }
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  td img{
+    cursor:pointer;
+  }
+
+  td img.disabled{
+    cursor: default;
+    opacity: 50%;
+  }

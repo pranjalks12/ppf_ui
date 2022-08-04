@@ -1,0 +1,46 @@
+<div class="root-container">
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    <button mat-icon-button (click)='onClick()'>
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <h1 style="margin-left: 5px;"><a [routerLink]="['/']" class="title"><img
+          style="width: 30px; height: 30px;margin-right: 5px;" src="assets/img/logo.png" />{{title}}</a></h1>
+    <span class="spacer"></span>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="profile">
+        <img style="width: 30px; height: 30px;margin-right: 5px;" src="assets/img/person_white_24dp.svg" />
+      </button>
+      <mat-menu #profile="matMenu">
+        <span mat-menu-item>Rahul Patil - Admin</span>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-primary" style="background-color: #ddd; padding-left: 20px;">
+    <a class="navbar-brand" href="/">Autocloud</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Catalogs</a>
+        <a class="nav-item nav-link" href="/deployments">Deployments</a>
+      </div>
+    </div>
+    <div style="margin-right: 20px; color: black;">
+      <img src="assets/img/logo-dark_257ecddf.svg" />
+    </div>
+  </nav> -->
+  <mat-sidenav-container>
+    <mat-sidenav #snav mode="over" (click)="snav.toggle()" [(opened)]='opened'>
+      <nav-left></nav-left>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

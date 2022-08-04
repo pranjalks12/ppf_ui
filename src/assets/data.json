@@ -1,0 +1,17 @@
+[
+  {
+    "item": "Account setup",
+    "path": "account-setup",
+    "icon": "storage_black_18dp.svg"
+  },
+  {
+    "item": "Catalogs",
+    "path": "/",
+    "icon": "storage_black_18dp.svg"
+  },
+  {
+    "item": "Deployments",
+    "path": "deployments",
+    "icon": "grid_view_black_24dp.svg"
+  }
+]

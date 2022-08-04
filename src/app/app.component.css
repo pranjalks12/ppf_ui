@@ -1,0 +1,51 @@
+div.root-container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+}
+
+mat-dialog-container {
+    z-index: 3;
+}
+.mat-toolbar.mat-primary{
+    background-color: #0d6efd !important;
+}
+.mat-drawer {
+    position: fixed;
+    width: 40vh;
+}
+
+mat-menu button {
+    cursor: pointer;
+}
+
+mat-toolbar {
+    z-index: 2;
+}
+
+mat-sidenav-container {
+    margin-top: 0px;
+    flex: 1;
+    z-index: 1;
+}
+
+div.content {
+    padding-top: 10px;
+    min-height: 87vh;
+}
+
+a.title {
+    text-decoration: none;
+    color: inherit;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+@media only screen and (max-width: 600px) {}

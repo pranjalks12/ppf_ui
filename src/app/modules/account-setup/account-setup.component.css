@@ -1,0 +1,28 @@
+
+form mat-form-field {
+    display: block;
+    padding: 10px 20px;
+}
+form .form-group{
+    margin:10px 0px;
+    clear: both;
+}
+
+form .form-control {
+    margin-bottom: 5px;
+}
+
+select.form-control.custom-select {
+    background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+    background-size: 8px 10px;
+}
+
+mat-card-actions {
+    text-align: right;
+    margin-right: 10px;
+}
+@media only screen and (max-width: 812px) {
+    mat-card {
+        margin: 0%;
+    }
+}

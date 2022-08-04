@@ -1,0 +1,87 @@
+<div class="card">
+    <h4 class="card-header">Deployments
+        <div class="flt-rgt">
+            <a routerLink=""><img src="assets/img/close-24px.svg" /></a>
+        </div>
+    </h4>
+    <div class="card-body">
+        <!-- <h6 class="card-title">{{catalog.description}}</h6> -->
+        <div>
+            <!-- <form> -->
+            <div class="mb-3 row flt-lft">
+                <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Filter:</label>
+                <div class="col-xs-3 col-sm-auto">
+                    <input type="text" (change)="search($event.target)">
+                </div>
+            </div>
+            <!-- </form> -->
+            <div align="right">
+                <img (click)="getDeployments(true)" class="btn btn-secondary" src="assets/img/refresh_black_24dp.svg"
+                    title="refresh" />
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-md-1">Deployment Id</th>
+                        <th scope="col" class="col-md-2">Name</th>
+                        <th scope="col" class="col-md-1">Type</th>
+                        <th scope="col" class="col-md-1">Created Date</th>
+                        <th scope="col" class="col-md-1">Expires</th>
+                        <th scope="col" class="col-md-1">Status</th>
+                        <th scope="col" class="col-md-2">Requester</th>
+                        <th scope="col" class="col-md-1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of deployments">
+                        <td>
+                            <a routerLink="/deployments/{{row.deployment_id}}">
+                                <ngb-highlight [result]="row.deployment_id" [term]="filter.value">
+                                </ngb-highlight>
+                            </a>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="row.name" [term]="filter.value"></ngb-highlight>
+                        </td>
+
+                        <td>
+                            <ngb-highlight [result]="row.type" [term]="filter.value"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="transformDateToString(row.create_time)"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="transformDate(row.destroy_time)"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="row.status" [term]="filter.value">
+                            </ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="row.requester" [term]="filter.value"></ngb-highlight>
+                        </td>
+                        <td>
+                            <span *ngIf="row.status != 'deleted'"><img src="assets/img/delete_black_24dp.svg"
+                                    title="delete" (click)="delete(row.deployment_id)" /></span>
+                            <span *ngIf="row.status == 'deleted'"><img src="assets/img/delete_black_24dp_disabled.svg"
+                                    enabled="disabled" class="disabled" /></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="d-flex justify-content-between p-2 flt-rgt">
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                    (pageChange)="refreshDeployments()">
+                </ngb-pagination>
+
+                <!-- <select class="form-select" style="width: auto" [(ngModel)]="pageSize"
+                    (ngModelChange)="refreshDeployments()">
+                    <option [ngValue]="5">5 items per page</option>
+                    <option [ngValue]="10">10 items per page</option>
+                    <option [ngValue]="20">20 items per page</option>
+                </select> -->
+            </div>
+        </div>
+    </div>
+</div>

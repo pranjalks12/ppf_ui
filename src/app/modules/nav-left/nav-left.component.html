@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button>
+        <!-- <mat-icon svgIcon="cross">close-nav</mat-icon> -->
+    </button>
+</mat-toolbar>
+
+<div class="list-group" *ngFor="let item of navData">
+    <a routerLink="{{item.path}}" class="list-group-item list-group-item-action">
+        {{ item.item }}
+    </a>
+</div>

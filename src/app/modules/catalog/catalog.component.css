@@ -1,0 +1,58 @@
+.catalog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-container>* {
+  width: 100%;
+}
+
+mat-card {
+  width: 30vh;
+  float: left;
+  margin: 2px 3px;
+}
+
+mat-card-subtitle{
+  margin-bottom: 20px;
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  height: 50px;
+}
+
+mat-card-content{
+  height: 80px;
+}
+mat-card-footer {
+  height: 2px;
+  background-color: green;
+}
+  
+mat-card-footer.error {
+  background-color: red;
+}
+.card.ng-star-inserted{
+  float: left;
+  width: 250px;
+  margin: 5px;
+}
+.card.ng-star-inserted .card-text{
+  height: 150px;
+}
+@media only screen and (max-width: 812px) {
+  div.mat-card-parent {
+    text-align: center;
+  }
+  div.mat-card-parent div.mat-card-child {
+    display: inline-block;
+  }
+  mat-card{
+	text-align: left;
+  }
+}
+
+/* 
+  mat-form-field{
+    float: right;
+  } */

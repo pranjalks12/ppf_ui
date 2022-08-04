@@ -1,0 +1,192 @@
+<div class="card">
+    <h4 class="card-header">{{deployment.name}} <div class="flt-rgt">
+            <a routerLink="/deployments"><img src="assets/img/remove-24px.svg" title="minimize" /></a>
+            <a routerLink=""><img src="assets/img/close-24px.svg" title="close" /></a>
+        </div>
+    </h4>
+    <div class="card-body">
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-md-1">Deployment Id</th>
+                        <th scope="col" class="col-md-2">Name</th>
+                        <th scope="col" class="col-md-1">Type</th>
+                        <th scope="col" class="col-md-1">Created Date</th>
+                        <th scope="col" class="col-md-1">Expires</th>
+                        <th scope="col" class="col-md-1">Status</th>
+                        <th scope="col" class="col-md-2">Requester</th>
+                        <th scope="col" class="col-md-1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{deployment.deployment_id}}
+                        </td>
+                        <td>
+                            {{deployment.name}}
+                        </td>
+                        <td>
+                            {{deployment.type}}
+                        </td>
+                        <td>
+                            {{transformDateToString(deployment.create_time)}}
+                        </td>
+                        <td>
+                            {{transformDate(deployment.destroy_time)}}
+                        </td>
+                        <td>
+                            {{deployment.status}}
+                        </td>
+                        <td>
+                            {{deployment.requester}}
+                        </td>
+                        <td>
+                            <span *ngIf="(deployment.status != 'deleted')">
+                                <img src="assets/img/delete_black_24dp.svg" title="delete" (click)="delete()" /></span>
+                            <span *ngIf="deployment.status == 'deleted'"><img
+                                    src="assets/img/delete_black_24dp_disabled.svg" enabled="disabled"
+                                    class="disabled" /></span>
+                            <img src="assets/img/refresh_black_24dp.svg" title="refresh"
+                                (click)="getDeploymentById()" />
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="deploymentDetails">
+            <h6>Details</h6>
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1" *ngIf="deploymentDetails.output.length > 0">
+                    <a ngbNavLink>Host details</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <thead>
+                                <th scope="col" class="col-md-2">
+                                    Parameter
+                                </th>
+                                <th scope="col" class="col-md-6">
+                                    Value
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Host URL
+                                    </td>
+                                    <td><a href="{{deploymentDetails.output[0].url.value}}" target="_blank">
+                                            {{deploymentDetails.output[0].url.value}} </a>
+                                        <img src="assets/img/content_copy_black_24dp.svg" title="copy"
+                                            (click)="copyToClipboard(deploymentDetails.output[0].url.value)"
+                                            ngbTooltip="Copied to clipboard!" triggers="click:blur" [openDelay]="200"
+                                            [closeDelay]="500">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Local admin username
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.output[0].local_admin_username.value}}
+                                        <img src="assets/img/content_copy_black_24dp.svg" title="copy"
+                                            (click)="copyToClipboard(deploymentDetails.output[0].local_admin_username.value)"
+                                            ngbTooltip="Copied to clipboard!" triggers="click:blur" [openDelay]="200"
+                                            [closeDelay]="500">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Host admin password </td>
+                                    <td>
+                                        <span *ngIf="show">
+                                            {{deploymentDetails.output[0].local_admin_password.value}}
+                                        </span>
+                                        <span *ngIf="!show">
+                                            {{maskedPassword}}
+                                        </span>
+                                        <img src="assets/img/visibility_black_24dp.svg" *ngIf="!show" title="show"
+                                            (click)="setVisibility()" />
+                                        <img src="assets/img/visibility_off_black_24dp.svg" *ngIf="show" title="hide"
+                                            (click)="setVisibility()" />
+                                        <img src="assets/img/content_copy_black_24dp.svg" *ngIf="show" title="copy"
+                                            (click)="copyToClipboard(deploymentDetails.output[0].local_admin_password.value)"
+                                            ngbTooltip="Copied to clipboard!" triggers="click:blur" [openDelay]="200"
+                                            [closeDelay]="500">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2" *ngIf="deploymentDetails.request.length > 0">
+                    <a ngbNavLink>Request details</a>
+                    <ng-template ngbNavContent>
+                        <table class="table">
+                            <thead>
+                                <th scope="col" class="col-md-2">
+                                    Parameter
+                                </th>
+                                <th scope="col" class="col-md-6">
+                                    Value
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Type
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].type}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Lifespan
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].lifespan}} hour(s)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Account
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].account}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Requester
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].requester}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Provider
+                                    </td>
+                                    <td>
+                                        {{deploymentDetails.request[0].provider}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</div>

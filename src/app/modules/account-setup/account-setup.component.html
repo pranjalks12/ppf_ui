@@ -1,0 +1,74 @@
+<div class="card">
+    <h4 class="card-header">Account Setup<div class="flt-rgt">
+            <a routerLink=""><img src="assets/img/close-24px.svg" title="close" /></a>
+        </div>
+    </h4>
+    <div class="card-body">
+        <h6 class="card-title">Setup up you own account which can be used to provision resources</h6>
+        <div style="margin-top: 20px;">
+            <form [formGroup]="accountSetupForm">
+                <div class="form-group">
+                    <label for="provider">Provider</label>
+                    <div class="input-group mb-3">
+                        <select class="form-control custom-select" formControlName="provider" id="provider">
+                            <option *ngFor="let provider of providers" [value]="provider.key">{{provider.value}}
+                            </option>
+                        </select>
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="provider">Options</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Name of account</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="accountSetupForm.get('name')!.errors ? 'is-invalid':''" formControlName="name"
+                        id="name" aria-describedby="name" placeholder="Enter deployment name">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="subscriptionId">Subscription Id</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="accountSetupForm.get('subscriptionId')!.errors ? 'is-invalid':''"
+                        formControlName="subscriptionId" id="subscriptionId" aria-describedby="subscriptionId"
+                        placeholder="Enter subscription id">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="tenantId">Tenant Id</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="accountSetupForm.get('tenantId')!.errors ? 'is-invalid':''"
+                        formControlName="tenantId" id="tenantId" aria-describedby="tenantId"
+                        placeholder="Enter tenant id">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="clientId">Client Id</label>
+                    <input type="text" class="form-control"
+                        [ngClass]="accountSetupForm.get('clientId')!.errors ? 'is-invalid':''"
+                        formControlName="clientId" id="clientId" aria-describedby="clientId"
+                        placeholder="Enter client id">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientSecret">Client Secret</label>
+                    <input type="password" class="form-control"
+                        [ngClass]="accountSetupForm.get('clientSecret')!.errors ? 'is-invalid':''"
+                        formControlName="clientSecret" id="clientSecret" aria-describedby="clientSecret"
+                        placeholder="Enter client secret ">
+                    <div class="invalid-feedback">Required</div>
+                </div>
+                <div align="end" class="form-group">
+                    <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
